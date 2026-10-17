@@ -8,7 +8,8 @@ type Role = {
   location?: string;
   type?: string;
   company?: string;
-  socCode?: string;
+  workLocation?: string;
+  hours?: string;
   summary?: string;
   responsibilities?: string[];
   skills?: string[];
@@ -16,13 +17,13 @@ type Role = {
 
 const openRoles: Role[] = [
   {
-    title: 'Business Project Manager', dept: 'Business and Financial Project Management', company: 'VERSALAXIS LIMITED', socCode: 'SOC 2020: 2440',
+    title: 'Business Project Manager', dept: 'Business and Financial Project Management', company: 'VERSALAXIS LIMITED', workLocation: 'Hybrid', hours: '20 hrs',
     summary: 'Plan and deliver business projects, manage budgets and resources, coordinate teams, monitor risks, and ensure projects meet agreed objectives and deadlines.',
     responsibilities: ['Define project objectives, scope, and expected benefits.', 'Develop project plans, milestones, and resource schedules.', 'Manage budgets, costs, and spending forecasts.', 'Coordinate teams, stakeholders, and external suppliers.', 'Monitor risks, issues, dependencies, and project changes.', 'Prepare progress reports and coordinate project handovers.'],
     skills: ['Experience managing business projects and budgets.', 'Strong analytical, organizational, and communication skills.', 'Proficiency in spreadsheets and project planning tools.', 'Relevant qualification or equivalent professional experience.', 'Project management certification is desirable.'],
   },
   {
-    title: 'Public Relations Officer', dept: 'Public Relations and Corporate Communications', company: 'VERSALAXIS LIMITED', socCode: 'SOC 2020: 2493',
+    title: 'Public Relations Officer', dept: 'Public Relations and Corporate Communications', company: 'VERSALAXIS LIMITED', workLocation: 'Hybrid', hours: '20 hrs',
     summary: 'Manage public relations activities, maintain the company’s public image, build media relationships, and coordinate accurate external communications.',
     responsibilities: ['Develop public relations and communications plans.', 'Write and edit press releases, statements, and website news.', 'Build relationships with journalists and external organizations.', 'Handle media enquiries and coordinate interviews.', 'Plan PR campaigns, events, and communications schedules.', 'Manage public-facing social media communications.', 'Monitor media coverage, public feedback, and reputation risks.', 'Prepare communications reports and evaluate campaign results.'],
     skills: ['Strong written and spoken English.', 'Excellent writing and editorial judgment.', 'Experience in PR or corporate communications.', 'Professional relationship-building skills.', 'Familiarity with social media publishing and media monitoring tools.', 'Relevant qualification or equivalent professional experience.'],
@@ -120,7 +121,7 @@ export function CareersPage() {
                 <div className="role-card-left">
                   <span className="role-dept-badge" style={{ color: deptColors[role.dept] || '#10B981', background: `${deptColors[role.dept] || '#10B981'}15` }}>{role.dept}</span>
                   <h3 className="role-title">{role.title}</h3>
-                  {role.summary ? <><p className="role-summary">{role.summary}</p><div className="role-meta"><span>{role.company}</span><span className="role-meta-dot">·</span><span>{role.socCode}</span></div></> : <div className="role-meta"><span>{role.location}</span><span className="role-meta-dot">·</span><span>{role.type}</span></div>}
+                  {role.summary ? <><p className="role-summary">{role.summary}</p><div className="role-meta"><span>{role.company}</span><span className="role-meta-dot">·</span><span>{role.workLocation}</span><span className="role-meta-dot">·</span><span>{role.hours}</span></div></> : <div className="role-meta"><span>{role.location}</span><span className="role-meta-dot">·</span><span>{role.type}</span></div>}
                 </div>
                 {role.summary ? <div className="role-actions"><button type="button" className="role-details-btn" onClick={() => setSelectedRole(role)}>View Details</button><a href="mailto:careers@versalaxis.com" className="btn-primary pill role-apply-btn">Apply Now</a></div> : <a href="mailto:careers@versalaxis.com" className="btn-primary pill role-apply-btn">Apply Now</a>}
               </div>
@@ -160,7 +161,7 @@ export function CareersPage() {
           </div>
         </div>
       </section>
-      {selectedRole && <div className="role-modal-backdrop" role="presentation" onMouseDown={() => setSelectedRole(null)}><section className="role-modal" role="dialog" aria-modal="true" aria-labelledby="role-modal-title" onMouseDown={event => event.stopPropagation()}><button type="button" className="role-modal-close" onClick={() => setSelectedRole(null)} aria-label="Close job details"><X size={20} /></button><span className="role-dept-badge" style={{ color: deptColors[selectedRole.dept] || '#10B981', background: `${deptColors[selectedRole.dept] || '#10B981'}15` }}>{selectedRole.dept}</span><h2 id="role-modal-title">{selectedRole.title}</h2><p className="role-modal-company">{selectedRole.company} · {selectedRole.socCode}</p><p>{selectedRole.summary}</p><h3>Key Responsibilities</h3><ul>{selectedRole.responsibilities?.map(item => <li key={item}>{item}</li>)}</ul><h3>Required Skills</h3><ul>{selectedRole.skills?.map(item => <li key={item}>{item}</li>)}</ul><a href="mailto:careers@versalaxis.com" className="btn-primary pill role-modal-apply">Apply Now <ArrowRight size={16} /></a></section></div>}
+      {selectedRole && <div className="role-modal-backdrop" role="presentation" onMouseDown={() => setSelectedRole(null)}><section className="role-modal" role="dialog" aria-modal="true" aria-labelledby="role-modal-title" onMouseDown={event => event.stopPropagation()}><button type="button" className="role-modal-close" onClick={() => setSelectedRole(null)} aria-label="Close job details"><X size={20} /></button><span className="role-dept-badge" style={{ color: deptColors[selectedRole.dept] || '#10B981', background: `${deptColors[selectedRole.dept] || '#10B981'}15` }}>{selectedRole.dept}</span><h2 id="role-modal-title">{selectedRole.title}</h2><p className="role-modal-company">{selectedRole.company} · {selectedRole.workLocation} · {selectedRole.hours}</p><p>{selectedRole.summary}</p><h3>Key Responsibilities</h3><ul>{selectedRole.responsibilities?.map(item => <li key={item}>{item}</li>)}</ul><h3>Required Skills</h3><ul>{selectedRole.skills?.map(item => <li key={item}>{item}</li>)}</ul><a href="mailto:careers@versalaxis.com" className="btn-primary pill role-modal-apply">Apply Now <ArrowRight size={16} /></a></section></div>}
     </div>
   );
 }
