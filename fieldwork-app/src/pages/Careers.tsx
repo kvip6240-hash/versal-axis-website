@@ -64,6 +64,12 @@ const perks = [
   { icon: Zap, title: 'Learning Budget', desc: 'Annual professional development budget for courses, conferences and books.' },
 ];
 
+const applicationMailto = (role: Role) => {
+  const subject = `Application for ${role.title}`;
+  const body = `Dear VERSALAXIS Recruitment Team,\n\nI would like to apply for the ${role.title} position.\n\nName:\nPhone number:\n\nPlease find my CV attached.\n\nKind regards,`;
+  return `mailto:vignesh@versalaxis.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+
 export function CareersPage() {
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -123,7 +129,7 @@ export function CareersPage() {
                   <h3 className="role-title">{role.title}</h3>
                   {role.summary ? <><p className="role-summary">{role.summary}</p><div className="role-meta"><span>{role.company}</span><span className="role-meta-dot">·</span><span>{role.workLocation}</span><span className="role-meta-dot">·</span><span>{role.hours}</span></div></> : <div className="role-meta"><span>{role.location}</span><span className="role-meta-dot">·</span><span>{role.type}</span></div>}
                 </div>
-                {role.summary ? <div className="role-actions"><button type="button" className="role-details-btn" onClick={() => setSelectedRole(role)}>View Details</button><a href="mailto:careers@versalaxis.com" className="btn-primary pill role-apply-btn">Apply Now</a></div> : <a href="mailto:careers@versalaxis.com" className="btn-primary pill role-apply-btn">Apply Now</a>}
+                {role.summary ? <div className="role-actions"><button type="button" className="role-details-btn" onClick={() => setSelectedRole(role)}>View Details</button><a href={applicationMailto(role)} className="btn-primary pill role-apply-btn">Apply Now</a></div> : <a href={applicationMailto(role)} className="btn-primary pill role-apply-btn">Apply Now</a>}
               </div>
             ))}
           </div>
@@ -161,7 +167,7 @@ export function CareersPage() {
           </div>
         </div>
       </section>
-      {selectedRole && <div className="role-modal-backdrop" role="presentation" onMouseDown={() => setSelectedRole(null)}><section className="role-modal" role="dialog" aria-modal="true" aria-labelledby="role-modal-title" onMouseDown={event => event.stopPropagation()}><button type="button" className="role-modal-close" onClick={() => setSelectedRole(null)} aria-label="Close job details"><X size={20} /></button><span className="role-dept-badge" style={{ color: deptColors[selectedRole.dept] || '#10B981', background: `${deptColors[selectedRole.dept] || '#10B981'}15` }}>{selectedRole.dept}</span><h2 id="role-modal-title">{selectedRole.title}</h2><p className="role-modal-company">{selectedRole.company} · {selectedRole.workLocation} · {selectedRole.hours}</p><p>{selectedRole.summary}</p><h3>Key Responsibilities</h3><ul>{selectedRole.responsibilities?.map(item => <li key={item}>{item}</li>)}</ul><h3>Required Skills</h3><ul>{selectedRole.skills?.map(item => <li key={item}>{item}</li>)}</ul><a href="mailto:careers@versalaxis.com" className="btn-primary pill role-modal-apply">Apply Now <ArrowRight size={16} /></a></section></div>}
+      {selectedRole && <div className="role-modal-backdrop" role="presentation" onMouseDown={() => setSelectedRole(null)}><section className="role-modal" role="dialog" aria-modal="true" aria-labelledby="role-modal-title" onMouseDown={event => event.stopPropagation()}><button type="button" className="role-modal-close" onClick={() => setSelectedRole(null)} aria-label="Close job details"><X size={20} /></button><span className="role-dept-badge" style={{ color: deptColors[selectedRole.dept] || '#10B981', background: `${deptColors[selectedRole.dept] || '#10B981'}15` }}>{selectedRole.dept}</span><h2 id="role-modal-title">{selectedRole.title}</h2><p className="role-modal-company">{selectedRole.company} · {selectedRole.workLocation} · {selectedRole.hours}</p><p>{selectedRole.summary}</p><h3>Key Responsibilities</h3><ul>{selectedRole.responsibilities?.map(item => <li key={item}>{item}</li>)}</ul><h3>Required Skills</h3><ul>{selectedRole.skills?.map(item => <li key={item}>{item}</li>)}</ul><a href={applicationMailto(selectedRole)} className="btn-primary pill role-modal-apply">Apply Now <ArrowRight size={16} /></a></section></div>}
     </div>
   );
 }
