@@ -28,14 +28,6 @@ const openRoles: Role[] = [
     responsibilities: ['Develop public relations and communications plans.', 'Write and edit press releases, statements, and website news.', 'Build relationships with journalists and external organizations.', 'Handle media enquiries and coordinate interviews.', 'Plan PR campaigns, events, and communications schedules.', 'Manage public-facing social media communications.', 'Monitor media coverage, public feedback, and reputation risks.', 'Prepare communications reports and evaluate campaign results.'],
     skills: ['Strong written and spoken English.', 'Excellent writing and editorial judgment.', 'Experience in PR or corporate communications.', 'Professional relationship-building skills.', 'Familiarity with social media publishing and media monitoring tools.', 'Relevant qualification or equivalent professional experience.'],
   },
-  { title: 'Senior Product Manager', dept: 'Product', location: 'London, UK', type: 'Full-time' },
-  { title: 'Platform Engineer (Backend)', dept: 'Engineering', location: 'Remote (UK)', type: 'Full-time' },
-  { title: 'Frontend Engineer', dept: 'Engineering', location: 'London / Remote', type: 'Full-time' },
-  { title: 'Operations Manager', dept: 'Operations', location: 'Manchester, UK', type: 'Full-time' },
-  { title: 'Provider Partnerships Lead', dept: 'Partnerships', location: 'London, UK', type: 'Full-time' },
-  { title: 'Business Development Manager', dept: 'Sales', location: 'UK Wide', type: 'Full-time' },
-  { title: 'Customer Success Manager', dept: 'Customer Success', location: 'Remote (UK)', type: 'Full-time' },
-  { title: 'Marketing Manager', dept: 'Marketing', location: 'London, UK', type: 'Full-time' },
 ];
 
 const deptColors: Record<string, string> = {
